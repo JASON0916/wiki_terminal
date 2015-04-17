@@ -3,19 +3,19 @@
     This will enable you wiki in the terminal.
 ## Install:
     you can install it by 
-    ```shell
+    ```Python
     python install setup.py
     ```
 ## Help:
-    ```shell
+    ```Python
     wiki -h(--help)
     ```for help
-    ```shell
+    ```Python
     wiki -s(--summary) arg 
     ```to get summary about the arg
-    ```shell
+    ```Python
     wiki -S(--search) arg
     ```to search arg on wiki
-    ```shell
+    ```Python
     wiki -r(--random) s(summary)
     ``` to get a random tittle (you can get summary about it if you want.)
