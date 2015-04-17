@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: wiki-terminal
+Version: 1.0.0
+Summary: This script will enable you wiki in terminal. This is inspired by longcw's youdao.
+Home-page: https://github.com/JASON0916/wiki_terminal
+Author: cm
+Author-email: jason0916phoenix@gmail.com
+License: MIT
+Description: This script will enable you wiki in shell. This is inspired by longcw's youdao.Please visit my github page for more information.
+Keywords: python wikipedia terminal
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
