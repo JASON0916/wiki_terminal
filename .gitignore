@@ -1,5 +1,5 @@
 .idea
 dist
 build
-wiki_termnial.egg-info
+wiki_terminal.egg-info
 *.pyc
