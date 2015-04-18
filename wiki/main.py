@@ -11,18 +11,24 @@ def main():
     # '\n' seems to be useless, which needs to be fixed.
     parser.add_option("-s", "--summary", action="callback", callback=wiki_summary,
                       help="wiki the summary for the word.\n"
-                           "Usage: python wiki.py -s(--summary) query.\n"
+                           "Usage: wiki -s(--summary) query.\n"
                            "query: the issue you wiki for")
 
     parser.add_option("-S", "--search", action="callback", callback=wiki_search,
                       help="Do a Wikipedia search for query. "
-                           "Usage: python wiki.py -S(--search) query num(default=10) suggestion(default=false)\n"
+                           "Usage: wiki -S(--search) query num(default=10) suggestion(default=false)\n"
                             "query: the issue you search for\n"
                             "num: the maxmimum number of results returned, numbers only")
 
     parser.add_option("-r", "--random", action="callback", callback=wiki_random,
                       help="Get a list of random Wikipedia article titles.\n"
-                            "Usage: python wiki.py -r(--random) s/summary(if you want to get the summary about it)")
+                            "Usage: wiki -r(--random) s/summary(if you want to get the summary about it)")
+
+    parser.add_option("-g", "--geosearch", action="callback", callback=wiki_geosearch,
+                      help="Do a wikipedia geo search for latitude and longitude using.\n"
+                            "Usage: wiki -g(--geosearch) latitude longitude (radius)"
+                            "latitude & longitude: location of the article.\n"
+                            "radius: Search radius in meters. The value must be between 10 and 10000")
 
     options, args = parser.parse_args()
 

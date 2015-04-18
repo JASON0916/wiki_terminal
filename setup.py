@@ -2,7 +2,7 @@ __author__ = 'cm'
 from setuptools import setup, find_packages, Extension
 
 setup(name='wiki_terminal',
-      version='1.0.0',
+      version='1.0.1',
       description="This script will enable you wiki in terminal. This is inspired by longcw's youdao.",
       long_description="This script will enable you wiki in shell. This is inspired by longcw's youdao."
                        "Please visit my github page for more information.",
