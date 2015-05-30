@@ -30,8 +30,8 @@ def main():
                             "latitude & longitude: location of the article.\n"
                             "radius: Search radius in meters. The value must be between 10 and 10000")
 
-    options, args = parser.parse_args()
-
+    (options, args) = parser.parse_args()
+    parser.disable_interspersed_args()
 
 if __name__ == '__main__':
     main()

@@ -16,3 +16,4 @@ you can install it by
 ## Version:
 * Version 1.0.0 basic function built
 * Version 1.0.1 the geosearch function is added
+* Version 1.1.0 the keyword-highlight function is added
