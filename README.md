@@ -13,7 +13,14 @@ you can install it by
 
 * `wiki -r(--random) s(summary)`to get a random tittle (you can get summary about it if you want.)
 
+* `wiki -g(--geosearch) latitude longitude (radius) Do a wikipedia geo search for latitude and longitude using.
+
+* `wiki -H(--history) show your search history and allow you to search again easily.
+
+* `wiki -c clear your query history.
+
 ## Version:
 * Version 1.0.0 basic function built
 * Version 1.0.1 the geosearch function is added
 * Version 1.1.0 the keyword-highlight function is added
+* version 1.1.1 the search function bug fixed and history function added  
