@@ -30,6 +30,15 @@ def main():
                             "latitude & longitude: location of the article.\n"
                             "radius: Search radius in meters. The value must be between 10 and 10000")
 
+    parser.add_option("-H", "--history", action="callback", callback=wiki_history,
+                      help="show your search history and allow you to search again easily.\n"
+                            "Usage:wiki -H(--history) number"
+                            "the history will be shown if command used without arg.\n"
+                            "corresponding word will be queried again if command used with number.")
+
+    parser.add_option("-c", "--clrhis", action="callback", callback=wiki_clear_history,
+                      help="clear your query history.")
+
     (options, args) = parser.parse_args()
     parser.disable_interspersed_args()
 
