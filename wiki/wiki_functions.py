@@ -5,7 +5,19 @@ from wikipedia import summary, DisambiguationError, \
     search, random, geosearch, WikipediaException
 
 
+# decorators
+def print_start_end(func):
+    def temp(*args, **kwargs):
+        temp_name = func.__name__
+        print '\n'+"=="*15+temp_name+"=="*15+'\n'
+        ret = func(*args, **kwargs)
+        print '\n'+"=="*16+"end"+"=="*16+'\n'
+        return ret
+    return temp
+
+
 # three formal parameter not used but added for the sake of optparse
+@print_start_end
 def wiki_summary(option, opt_str, value, parser):
     """
     used to get summary of a word, raise errors when the word meets more than one wikipage
@@ -15,7 +27,6 @@ def wiki_summary(option, opt_str, value, parser):
     if length == 0:
         parser.error(colored("option -s needs at least one argument!", "red", attrs=["bold"]))
     else:
-        print '\n'+"=="*15+"result"+"=="*15+'\n'
         try:
             text = summary(parser.rargs)
 
@@ -28,11 +39,11 @@ def wiki_summary(option, opt_str, value, parser):
 
         # there is always a "None" at last, can't solve that problem.
         print w_print(text, "white", parser.rargs, "green")
-        print '\n'+"=="*16+"end"+"=="*16+'\n'
         with open('history.txt', 'a') as history_file:
             history_file.writelines(parser.rargs[0]+'\n')
 
 
+@print_start_end
 def wiki_search(option, opt_str, value, parser):
     """
     used to search for a certain word.
@@ -56,13 +67,12 @@ def wiki_search(option, opt_str, value, parser):
         res = search(parser.rargs[0])
         key_words = parser.rargs[0]
 
-    print '\n'+"=="*15+"results"+"=="*15+'\n'
     w_print(res, "white", key_words, "green")
-    print '\n'+"=="*16+"end"+"=="*16+'\n'
     with open('history.txt', 'a') as history_file:
         history_file.writelines(parser.rargs[0]+'\n')
 
 
+@print_start_end
 def wiki_random(option, opt_str, value, parser):
     """
     used to have a title even show its summary randomly.
@@ -73,14 +83,12 @@ def wiki_random(option, opt_str, value, parser):
     elif length == 1 and (parser.rargs[0] == "s" or parser.rargs[0] == 'summary'):
         title = random().encode("utf-8")
         cprint(title, 'blue', attrs=['bold', 'dark'])
-        print '\n'+"=="*15+"result"+"=="*15+'\n'
         try:
             text = summary(title)
             w_print(text, "white", title.split(), "green")
         except DisambiguationError as error:
             parser.error(u"\"{0}\" may refer to: \n{1}".format(error.title, '\n'.join(error.options)))
             exit(1)
-        print '\n'+"=="*16+"end"+"=="*16+'\n'
     else:
         title = random().encode("utf-8")
         try:
@@ -90,6 +98,7 @@ def wiki_random(option, opt_str, value, parser):
             exit(1)
 
 
+@print_start_end
 def wiki_geosearch(option, opt_str, value, parser):
     """
     used to find out what happend at a certain location or in the range of radius
@@ -113,18 +122,16 @@ def wiki_geosearch(option, opt_str, value, parser):
         parser.error(colored("An unknown error occured: 'Invalid coordinate provided'. Please report it on GitHub!",
                              "red", attrs=["bold"]))
         exit(1)
-    print '\n'+"=="*15+"result"+"=="*15+'\n'
     for res in geosearch_res:
         cprint(res+'\n', "green")
-    print '\n'+"=="*16+"end"+"=="*16+'\n'
 
 
+@print_start_end
 def wiki_history(option, opt_str, value, parser):
     """
     used to show history and query the word in it again.
     """
     length = len(parser.rargs)
-    print '\n'+"=="*15+"history"+"=="*15+'\n'
     if length > 1:
         parser.error(colored("option -h can't handle more than 1 arguments!", "red", attrs=["bold"]))
     elif length == 0:
@@ -147,7 +154,6 @@ def wiki_history(option, opt_str, value, parser):
                 parser.error(colored(message, "red", attrs=["bold"]))
                 exit(1)
             # there is always a "None" at last, can't solve that problem.
-    print '\n'+"=="*15+"end"+"=="*15+'\n'
 
 
 def wiki_clear_history(option, opt_str, value, parser):
@@ -175,7 +181,7 @@ def w_print(words, words_color, key_word=[],  key_word_color='green'):
         for ch in words:
             for times, key_words in enumerate(key_word):
                 # i claim the times to prevent print common words for more than one time
-                if ch.lower().startswith(key_words) or ch.lower().endswith(key_words):
+                if key_words in ch.lower():
                     print colored(ch, key_word_color, attrs=['bold', 'underline']),
                     break
                 if times == len(key_word) - 1:
