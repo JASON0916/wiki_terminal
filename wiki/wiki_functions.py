@@ -16,8 +16,19 @@ def print_start_end(func):
     return temp
 
 
+def log_history(func):
+    def temp(*args, **kwargs):
+        item_to_log = func(*args, **kwargs)
+        if item_to_log is not None:
+            with open('history.txt', 'a') as history_file:
+                history_file.writelines(item_to_log+'\n')
+        return item_to_log
+    return temp
+
+
 # three formal parameter not used but added for the sake of optparse
 @print_start_end
+@log_history
 def wiki_summary(option, opt_str, value, parser):
     """
     used to get summary of a word, raise errors when the word meets more than one wikipage
@@ -39,11 +50,11 @@ def wiki_summary(option, opt_str, value, parser):
 
         # there is always a "None" at last, can't solve that problem.
         print w_print(text, "white", parser.rargs, "green")
-        with open('history.txt', 'a') as history_file:
-            history_file.writelines(parser.rargs[0]+'\n')
+        return parser.rargs[0]
 
 
 @print_start_end
+@log_history
 def wiki_search(option, opt_str, value, parser):
     """
     used to search for a certain word.
@@ -68,11 +79,11 @@ def wiki_search(option, opt_str, value, parser):
         key_words = parser.rargs[0]
 
     w_print(res, "white", key_words, "green")
-    with open('history.txt', 'a') as history_file:
-        history_file.writelines(parser.rargs[0]+'\n')
+    return parser.rargs[0]
 
 
 @print_start_end
+@log_history
 def wiki_random(option, opt_str, value, parser):
     """
     used to have a title even show its summary randomly.
@@ -96,6 +107,7 @@ def wiki_random(option, opt_str, value, parser):
         except UnicodeEncodeError:
             parser.error(colored("Unicode encode failed!", "red", attrs=["bold"]))
             exit(1)
+        return title
 
 
 @print_start_end
