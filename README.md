@@ -1,11 +1,14 @@
 # wiki_terminal
-====
-    This will enable you wiki in the terminal.
+---
+This will enable you wiki in the terminal.
+
 ## Install:
 you can install it by:
     `python install setup.py`
+
 or simply:
     `pip install wiki_terminal`
+
 ## Help:
 * `wiki -h(--help)`for help
 
