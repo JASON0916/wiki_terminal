@@ -4,3 +4,4 @@ build
 wiki_terminal.egg-info
 *.pyc
 *.txt
+venv/
