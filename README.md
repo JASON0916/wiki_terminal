@@ -10,22 +10,19 @@ or simply:
     `pip install wiki_terminal`
 
 ## Help:
-* `wiki -h(--help)`for help
+* `help`for help
 
-* `wiki -s(--summary) arg`to get summary about the arg
+* `summary arg`to get summary about the arg
 
-* `wiki -S(--search) arg`to search arg on wiki
+* `search arg`to search arg on wiki
 
-* `wiki -r(--random) s(summary)`to get a random tittle (you can get summary about it if you want.)
+* `random s(summary)`to get a random tittle (you can get summary about it if you want.)
 
-* `wiki -g(--geosearch) latitude longitude (radius)` Do a wikipedia geo search for latitude and longitude using.
-
-* `wiki -H(--history) number` show your search history and allow you to search again easily.
-
-* `wiki -c(--clrhis)` clear your query history.
+* `geosearch latitude longitude (radius)` Do a wikipedia geo search for latitude and longitude using.
 
 ## Version:
 * Version 1.0.0 basic function built
 * Version 1.0.1 the geosearch function is added
 * Version 1.1.0 the keyword-highlight function is added
 * version 1.1.1 the search function bug fixed and history function added
+* version 1.2.0 rewrite wiki_terminal by using prompt-toolkit
