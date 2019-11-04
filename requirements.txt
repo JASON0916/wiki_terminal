@@ -1,7 +1,7 @@
 beautifulsoup4==4.4.1
 prompt-toolkit==0.54
 Pygments==2.0.2
-requests==2.8.1
+requests==2.20.0
 six==1.10.0
 termcolor==1.1.0
 wcwidth==0.1.5
